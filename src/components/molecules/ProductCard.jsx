@@ -1,7 +1,7 @@
 import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
 import Image from '../atoms/Image.jsx';
-import Button from '../atoms/BUtton.jsx';
+import Button from '../atoms/Button.jsx';
 
 
 function ProductCard({ name, description, precio, marca, image, onClick }) {
