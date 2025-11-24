@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #180303;
+  --color-primary: #5e5e5e;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #4b0202;
+  --color-secondary: #848586;
   --color-button: #792323;
   --color-button-primary: #42a52a;
+  --color-button-error: #d42a2a;
   --font-primary: 'Segoe UI', 'Montserrat', sans-serif;
   --font-heading: 'Bebas Neue', 'Oswald', sans-serif;
 }

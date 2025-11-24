@@ -1,6 +1,7 @@
 // ...existing code...
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/molecules/ProductCard.jsx";
+import SearchBar from "../components/molecules/SearchBar.jsx";
 import producto from '../api/objects/producto.js';
 
 function Home() {
