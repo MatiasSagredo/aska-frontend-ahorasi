@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #180303;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #4b0202;
+  --color-button: #792323;
+  --color-button-primary: #42a52a;
+  --font-primary: 'Segoe UI', 'Montserrat', sans-serif;
+  --font-heading: 'Bebas Neue', 'Oswald', sans-serif;
+}
+
+body {
+  @apply min-h-screen bg-primary text-primary-foreground font-primary;
+}
