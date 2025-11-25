@@ -11,7 +11,7 @@ function ProductCard({ name, description, precio, marca, image, onClickCompra, o
     <article className="bg-secondary rounded-md relative w-full border border-white/10">
       <Div className="flex flex-col justify-between h-full">
         <Div className="flex flex-col p-4">
-          <Text variant='h3' className="font-heading text-3xl font-bold">{name}</Text>
+          <Text variant='h3' className="font-heading text-2xl font-bold">{name}</Text>
           <Text className={"text-gray-300"}>{description}</Text>
         </Div>
         <Div className="flex flex-col">
@@ -22,8 +22,8 @@ function ProductCard({ name, description, precio, marca, image, onClickCompra, o
             <Text className={"text-gray-400"}>{marca}</Text>
           </Div>
           <Div className="flex flex-col p-4">
-            <Button onClick={onClickCompra} className={"bg-button-success mb-2"}>Comprar</Button>
-            <Button onClick={onClickInfo} className={"bg-button"}>Ver Informacion</Button>
+            <Button onClick={onClickCompra} className={"bg-button-success mb-2 hover:shadow-2xl hover:shadow-black"}>Comprar</Button>
+            <Button onClick={onClickInfo} className={"bg-button hover:shadow-2xl hover:shadow-black"}>Ver Informacion</Button>
           </Div>
         </Div>
       </Div>
