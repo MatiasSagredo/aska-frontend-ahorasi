@@ -4,6 +4,8 @@ import axios from "axios";
  * Objeto Usuario
  * @property {number} idUsuario - ID del Usuario
  * @property {string} nombreUsuario - Nombre del Usuario
+ * @property {string} emailUsuario - Email del Usuario
+ * @property {import('./rol.js').Rol} idRol - Rol del Usuario
  */
 
 let instance = axios.create({
@@ -13,7 +15,7 @@ let instance = axios.create({
     },
 });
 
-const Usuario = {
+const usuario = {
     /** @returns {Promise<Array<Usuario>>} */
     getAll: async () => {
         const response = await instance.get('/usuario');
@@ -60,4 +62,4 @@ const Usuario = {
     },
 };
 
-export default Usuario;
+export default usuario;

@@ -3,7 +3,7 @@ import axios from "axios";
 /** @typedef {Object} Region
  * Objeto Region
  * @property {number} idRegion - ID de la Region
- * @property {string} nombreRegion- Nombre de la Region
+ * @property {string} nombreRegion - Nombre de la Region
  */
 
 let instance = axios.create({

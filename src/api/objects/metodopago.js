@@ -1,9 +1,9 @@
 import axios from "axios";
 
-/** @typedef {Object} metodopago 
- * Objeto metodopago
- * @property {number} idmetodopago - ID de la metodopago
- * @property {string} nombremetodopago - Nombre de la metodopago
+/** @typedef {Object} MetodoPago
+ * Objeto MetodoPago
+ * @property {number} idMetodoPago - ID de la MetodoPago
+ * @property {string} nombreMetodoPago - Nombre de la MetodoPago
  */
 
 let instance = axios.create({
@@ -13,51 +13,51 @@ let instance = axios.create({
     },
 });
 
-const metodopago = {
-    /** @returns {Promise<Array<metodopago>>} */
+const metodoPago = {
+    /** @returns {Promise<Array<MetodoPago>>>} */
     getAll: async () => {
         const response = await instance.get('/metodopago');
         return response.data;
     },
     /**
      * @param {number} id - ID de la metodopago a buscar
-     * @returns {Promise<metodopago>}
+     * @returns {Promise<MetodoPago>}
      */
     getById: async (id) => {
         const response = await instance.get(`/metodopago/${id}`);
         return response.data;
     },
     /**
-     * @param {metodopago} data - Datos de la metodopago a crear
-     * @returns {Promise<metodopago>} */
-    createmetodopago: async (data) => {
+     * @param {MetodoPago} data - Datos de la metodopago a crear
+     * @returns {Promise<MetodoPago>} */
+    createMetodoPago: async (data) => {
         const response = await instance.post('/metodopago', data);
         return response.data;
     },
-    /** 
+    /**
      * @param {number} id - ID de la metodopago a actualizar
-     * @param {metodopago} data - Datos de la metodopago a actualizar
-     * @returns {Promise<metodopago>} 
+     * @param {MetodoPago} data - Datos de la metodopago a actualizar
+     * @returns {Promise<MetodoPago>}
      */
-    updatemetodopagoById: async (id, data) => {
+    updateMetodoPagoById: async (id, data) => {
         const response = await instance.put(`/metodopago/${id}`, data);
         return response.data;
     },
-    /** 
+    /**
      * @param {number} id - ID de la metodopago a actualizar
-     * @param {Partial<metodopago>} data - Datos parciales de la metodopago a actualizar
-     * @returns {Promise<metodopago>} */
-    patchmetodopagoById: async (id, data) => {
+     * @param {Partial<MetodoPago>} data - Datos parciales de la metodopago a actualizar
+     * @returns {Promise<MetodoPago>} */
+    patchMetodoPagoById: async (id, data) => {
         const response = await instance.patch(`/metodopago/${id}`, data);
         return response.data;
     },
-    /** 
+    /**
      * @param {number} id - ID de la metodopago a eliminar
      * @returns {Promise<void>} */
-    deletemetodopagoById: async (id) => {
+    deleteMetodoPagoById: async (id) => {
         const response = await instance.delete(`/metodopago/${id}`);
         return response.data;
     },
 };
 
-export default metodopago;
+export default metodoPago;

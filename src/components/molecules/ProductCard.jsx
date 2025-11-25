@@ -2,21 +2,31 @@ import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
 import Image from '../atoms/Image.jsx';
 import Button from '../atoms/Button.jsx';
+import Separator from '../atoms/Separator.jsx';
 
 
-function ProductCard({ name, description, precio, marca, image, onClick }) {
+function ProductCard({ name, description, precio, marca, image, onClickCompra, onClickInfo }) {
 
   return (
-    <article className="bg-secondary w-fit p-4 rounded border-2 border-[#c5c5c5] relative">
-      <Div className="" aria-hidden="true" />
-      <Text variant='h3' className="font-heading text-3xl font-bold">{name}</Text>
-      <Text>{description}</Text>
-      <Image src="/perroia.webp" alt={`imagen de ${name}`} className="w-full h-36 md:h-40 object-contain my-2 rounded-2xl" />
-      <Div className="flex items-center justify-between mt-2">
-        <Text className={""}>Precio: ${precio}</Text>
-        <Text className={""}>Marca: {marca}</Text>
+    <article className="bg-secondary rounded-md relative w-full border border-white/10">
+      <Div className="flex flex-col justify-between h-full">
+        <Div className="flex flex-col p-4">
+          <Text variant='h3' className="font-heading text-3xl font-bold">{name}</Text>
+          <Text className={"text-gray-300"}>{description}</Text>
+        </Div>
+        <Div className="flex flex-col">
+          <Image src={image} alt={`imagen de ${name}`} className="w-full h-36 md:h-40 object-contain my-2 rounded-2xl p-4" />
+          <Separator />
+          <Div className="flex items-center justify-between my-2 px-4">
+            <Text>Precio: ${precio}</Text>
+            <Text className={"text-gray-400"}>{marca}</Text>
+          </Div>
+          <Div className="flex flex-col p-4">
+            <Button onClick={onClickCompra} className={"bg-button-success mb-2"}>Comprar</Button>
+            <Button onClick={onClickInfo} className={"bg-button"}>Ver Informacion</Button>
+          </Div>
+        </Div>
       </Div>
-      <Button className={"bg-button-primary"}>Comprar</Button>
     </article>
   )
 }

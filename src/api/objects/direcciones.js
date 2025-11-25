@@ -3,7 +3,9 @@ import axios from "axios";
 /** @typedef {Object} Direcciones
  * Objeto Direcciones
  * @property {number} idDirecciones - ID de las Direcciones
- * @property {string} nombreDirecciones - Nombre de las Direcciones
+ * @property {string} nombreCalle - Nombre de la Calle
+ * @property {import('./usuario.js').Usuario} idUsuario - Usuario asociado a las Direcciones
+ * @property {import('./comuna.js').Comuna} idComuna - Comuna asociada a las Direcciones
  */
 
 let instance = axios.create({
@@ -13,7 +15,7 @@ let instance = axios.create({
     },
 });
 
-const Direcciones = {
+const direcciones = {
     /** @returns {Promise<Array<Direcciones>>} */
     getAll: async () => {
         const response = await instance.get('/direcciones');
@@ -60,4 +62,4 @@ const Direcciones = {
     },
 };
 
-export default Direcciones;
+export default direcciones;

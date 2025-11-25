@@ -4,6 +4,7 @@ import axios from "axios";
  * Objeto Comuna
  * @property {number} idComuna - ID de la Comuna
  * @property {string} nombreComuna - Nombre de la Comuna
+ * @property {import('./region').Region} idRegion - Región a la que pertenece la Comuna.
  */
 
 let instance = axios.create({

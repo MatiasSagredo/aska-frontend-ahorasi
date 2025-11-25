@@ -3,7 +3,11 @@ import axios from "axios";
 /** @typedef {Object} Venta
  * Objeto Venta
  * @property {number} idVenta - ID de la Venta
- * @property {string} nombreVenta - Nombre de la Venta
+ * @property {number?} total - Total de la Venta
+ * @property {import('./estado.js').Estado} idEstado - Estado de la Venta
+ * @property {import('./metodopago.js').MetodoPago} idMetodoPago - Metodo de Pago de la Venta
+ * @property {import('./metodoenvio.js').MetodoEnvio} idMetodoEnvio - Metodo de Envio de la Venta
+ * @property {import('./usuario.js').Usuario} idUsuario - Usuario asociado a la Venta
  */
 
 let instance = axios.create({
@@ -13,7 +17,7 @@ let instance = axios.create({
     },
 });
 
-const Venta = {
+const venta = {
     /** @returns {Promise<Array<Venta>>} */
     getAll: async () => {
         const response = await instance.get('/venta');
@@ -60,4 +64,4 @@ const Venta = {
     },
 };
 
-export default Venta;
+export default venta;
