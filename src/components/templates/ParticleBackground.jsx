@@ -16,6 +16,7 @@ function ParticleBackground() {
   const options = useMemo(
     () => ({
       background: { color: 'transparent' },
+      fullScreen: { enable: false },
       detectRetina: true,
       fpsLimit: 60,
       particles: {
@@ -61,7 +62,13 @@ function ParticleBackground() {
 
   if (!ready) return null
 
-  return <Particles className="particle-background" id="globalParticles" options={options} />
+  return (
+    <Particles
+      className="pointer-events-none fixed inset-0 -z-10"
+      id="globalParticles"
+      options={options}
+    />
+  )
 }
 
 export default ParticleBackground
