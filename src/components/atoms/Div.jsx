@@ -1,8 +1,9 @@
-function Div({children, ...props}) {
+function Div({children, variant = "div", ...props}) {
+     const Tag = variant;
     return (
-        <div {...props}>
+        <Tag {...props}>
             {children}
-        </div>
+        </Tag>
     )
 }
 

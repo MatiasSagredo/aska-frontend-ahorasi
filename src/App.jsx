@@ -7,12 +7,13 @@ import Productos from './pages/Productos.jsx';
 import Contacto from './pages/Contacto.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import Div from './components/atoms/Div.jsx';
 
 function App() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <Div className="relative min-h-screen overflow-hidden">
       <ParticleBackground />
-      <div className="relative z-10 flex min-h-screen flex-col">
+      <Div className="relative z-10 flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">
           <Routes>
@@ -24,8 +25,8 @@ function App() {
           </Routes>
         </main>
         <Footer />
-      </div>
-    </div>
+      </Div>
+    </Div>
   )
 }
 

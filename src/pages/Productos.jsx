@@ -1,4 +1,3 @@
-// ...existing code...
 import { useEffect, useState } from "react";
 import producto from '../api/objects/producto.js';
 import imagenes from "../api/objects/imagenes.js";

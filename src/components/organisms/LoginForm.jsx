@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../templates/AuthProvider';
 import Input from '../atoms/Input';
@@ -7,13 +7,18 @@ import Text from '../atoms/Text';
 import Div from '../atoms/Div';
 
 const LoginForm = () => {
-    const { login } = useAuth();
+    const { login, user } = useAuth();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        if(user) {
+            navigate('/')
+        }
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,9 +54,9 @@ const LoginForm = () => {
 
             <Div className="space-y-4">
                 <Div>
-                    <label className="block mb-1.5 text-sm font-medium text-primary-foreground/90">
+                    <Text variant='label' className="block mb-1.5 text-sm font-medium text-primary-foreground/90">
                         Correo Electrónico
-                    </label>
+                    </Text>
                     <Input
                         type="email"
                         placeholder="ejemplo@correo.com"
@@ -63,9 +68,9 @@ const LoginForm = () => {
                 </Div>
 
                 <Div>
-                    <label className="block mb-1.5 text-sm font-medium text-primary-foreground/90">
+                    <Text variant='label' className="block mb-1.5 text-sm font-medium text-primary-foreground/90">
                         Contraseña
-                    </label>
+                    </Text>
                     <Input
                         type="password"
                         placeholder="••••••••"
