@@ -40,7 +40,6 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // 3. Función de Logout
   const logout = () => {
     setUser(null);
     localStorage.removeItem('usuario');

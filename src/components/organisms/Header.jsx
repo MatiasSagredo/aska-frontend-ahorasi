@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../templates/AuthProvider';
 import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
 import Button from '../atoms/Button.jsx';
@@ -7,6 +8,7 @@ import Icon from '../atoms/Icon.jsx';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { logout, user } = useAuth();
     const links = [
         { href: '/', label: 'Inicio' },
         { href: '/productos', label: 'Productos' },
@@ -68,6 +70,22 @@ function Header() {
                     ))}
                 </Div>
 
+                <Div className="items-center gap-4 hidden md:flex">
+                    {!user && (
+                        <>
+                            <Link to="/login" className="mr-4 rounded-2xl bg-secondary/30 px-4 py-2 text-sm font-medium leading-tight text-primary-foreground transition-all hover:bg-secondary/50 hover:text-white focus:outline-none focus-visible:bg-secondary/60 md:mr-6">
+                                Iniciar Sesion
+                            </Link>
+                            <Link to="/register" className="rounded-2xl bg-secondary px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:bg-secondary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                                Regístrate
+                            </Link>
+                        </>
+                    )}
+                    {user && (
+                        <Button onClick={() => { logout() }}>Cerrar Sesion</Button>
+                    )}
+                </Div>
+
                 <Div className="flex items-center gap-3 md:hidden">
                     <Button
                         onClick={toggleMenu}
@@ -110,6 +128,22 @@ function Header() {
                                         {link.label}
                                     </Link>
                                 ))}
+                                {!user && (
+                                    <Div>
+                                        <Link to="/login" onClick={handleMenuLinkClick} className="mr-4 rounded-2xl bg-secondary/30 px-4 py-2 text-sm font-medium leading-tight text-primary-foreground transition-all hover:bg-secondary/50 hover:text-white focus:outline-none focus-visible:bg-secondary/60 md:mr-6">
+                                            Iniciar Sesion
+                                        </Link>
+                                        <Link to="/register" onClick={handleMenuLinkClick} className="rounded-2xl bg-secondary px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:bg-secondary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                                            Regístrate
+                                        </Link>
+                                    </Div>
+                                )}
+                                {user && (
+                                    <Button onClick={() => { 
+                                        logout(); 
+                                        handleMenuLinkClick();
+                                     }}>Cerrar Sesion</Button>
+                                )}
                             </Div>
                         </Div>
                     </>
