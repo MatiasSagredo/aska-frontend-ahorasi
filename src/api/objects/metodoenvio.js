@@ -16,23 +16,38 @@ let instance = axios.create({
 const metodoEnvio = {
     /** @returns {Promise<Array<MetodoEnvio>>>} */
     getAll: async () => {
-        const response = await instance.get('/metodoenvio');
-        return response.data;
+        try {
+            const response = await instance.get('/metodoenvio');
+            return response.data;
+        } catch (error) {
+            console.error('Error en getAll metodoenvio:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de la metodoenvio a buscar
      * @returns {Promise<MetodoEnvio>}
      */
     getById: async (id) => {
-        const response = await instance.get(`/metodoenvio/${id}`);
-        return response.data;
+        try {
+            const response = await instance.get(`/metodoenvio/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en getById metodoenvio:', error);
+            throw error;
+        }
     },
     /**
      * @param {MetodoEnvio} data - Datos de la metodoenvio a crear
      * @returns {Promise<MetodoEnvio>} */
     createMetodoEnvio: async (data) => {
-        const response = await instance.post('/metodoenvio', data);
-        return response.data;
+        try {
+            const response = await instance.post('/metodoenvio', data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en createMetodoEnvio:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de la metodoenvio a actualizar
@@ -40,23 +55,38 @@ const metodoEnvio = {
      * @returns {Promise<MetodoEnvio>}
      */
     updateMetodoEnvioById: async (id, data) => {
-        const response = await instance.put(`/metodoenvio/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.put(`/metodoenvio/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en updateMetodoEnvioById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de la metodoenvio a actualizar
      * @param {Partial<MetodoEnvio>} data - Datos parciales de la metodoenvio a actualizar
      * @returns {Promise<MetodoEnvio>} */
     patchMetodoEnvioById: async (id, data) => {
-        const response = await instance.patch(`/metodoenvio/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.patch(`/metodoenvio/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en patchMetodoEnvioById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de la metodoenvio a eliminar
      * @returns {Promise<void>} */
     deleteMetodoEnvioById: async (id) => {
-        const response = await instance.delete(`/metodoenvio/${id}`);
-        return response.data;
+        try {
+            const response = await instance.delete(`/metodoenvio/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en deleteMetodoEnvioById:', error);
+            throw error;
+        }
     },
 };
 

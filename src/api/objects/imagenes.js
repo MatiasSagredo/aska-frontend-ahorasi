@@ -17,23 +17,38 @@ let instance = axios.create({
 const imagenes = {
     /** @returns {Promise<Array<Imagenes>>} */
     getAll: async () => {
-        const response = await instance.get('/Imagenes');
-        return response.data;
+        try {
+            const response = await instance.get('/Imagenes');
+            return response.data;
+        } catch (error) {
+            console.error('Error en getAll imagenes:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las imagenes a buscar
      * @returns {Promise<Imagenes>}
      */
     getById: async (id) => {
-        const response = await instance.get(`/Imagenes/${id}`);
-        return response.data;
+        try {
+            const response = await instance.get(`/Imagenes/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en getById imagenes:', error);
+            throw error;
+        }
     },
     /**
      * @param {Imagenes} data - Datos de las imagenes a crear
      * @returns {Promise<Imagenes>} */
     createImagenes: async (data) => {
-        const response = await instance.post('/Imagenes', data);
-        return response.data;
+        try {
+            const response = await instance.post('/Imagenes', data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en createImagenes:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las imagenes a actualizar
@@ -41,23 +56,38 @@ const imagenes = {
      * @returns {Promise<Imagenes>}
      */
     updateImagenesById: async (id, data) => {
-        const response = await instance.put(`/Imagenes/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.put(`/Imagenes/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en updateImagenesById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las imagenes a actualizar
      * @param {Partial<Imagenes>} data - Datos parciales de las imagenes a actualizar
      * @returns {Promise<Imagenes>} */
     patchImagenesById: async (id, data) => {
-        const response = await instance.patch(`/Imagenes/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.patch(`/Imagenes/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en patchImagenesById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las imagenes a eliminar
      * @returns {Promise<void>} */
     deleteImagenesById: async (id) => {
-        const response = await instance.delete(`/Imagenes/${id}`);
-        return response.data;
+        try {
+            const response = await instance.delete(`/Imagenes/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en deleteImagenesById:', error);
+            throw error;
+        }
     },
 };
 

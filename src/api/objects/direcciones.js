@@ -18,23 +18,38 @@ let instance = axios.create({
 const direcciones = {
     /** @returns {Promise<Array<Direcciones>>} */
     getAll: async () => {
-        const response = await instance.get('/direcciones');
-        return response.data;
+        try {
+            const response = await instance.get('/direcciones');
+            return response.data;
+        } catch (error) {
+            console.error('Error en getAll direcciones:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las Direcciones a buscar
      * @returns {Promise<Direcciones>}
      */
     getById: async (id) => {
-        const response = await instance.get(`/direcciones/${id}`);
-        return response.data;
+        try {
+            const response = await instance.get(`/direcciones/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en getById direcciones:', error);
+            throw error;
+        }
     },
     /**
      * @param {Direcciones} data - Datos de las Direcciones a crear
      * @returns {Promise<Direcciones>} */
     createDirecciones: async (data) => {
-        const response = await instance.post('/direcciones', data);
-        return response.data;
+        try {
+            const response = await instance.post('/direcciones', data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en createDirecciones:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las Direcciones a actualizar
@@ -42,23 +57,38 @@ const direcciones = {
      * @returns {Promise<Direcciones>}
      */
     updateDireccionesById: async (id, data) => {
-        const response = await instance.put(`/direcciones/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.put(`/direcciones/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en updateDireccionesById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de la Direcciones a actualizar
      * @param {Partial<Direcciones>} data - Datos parciales de las Direcciones a actualizar
      * @returns {Promise<Direcciones>} */
     patchDireccionesById: async (id, data) => {
-        const response = await instance.patch(`/direcciones/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.patch(`/direcciones/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en patchDireccionesById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID de las Direcciones a eliminar
      * @returns {Promise<void>} */
     deleteDireccionesById: async (id) => {
-        const response = await instance.delete(`/direcciones/${id}`);
-        return response.data;
+        try {
+            const response = await instance.delete(`/direcciones/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en deleteDireccionesById:', error);
+            throw error;
+        }
     },
 };
 

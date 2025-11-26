@@ -18,23 +18,38 @@ let instance = axios.create({
 const usuario = {
     /** @returns {Promise<Array<Usuario>>} */
     getAll: async () => {
-        const response = await instance.get('/usuario');
-        return response.data;
+        try {
+            const response = await instance.get('/usuario');
+            return response.data;
+        } catch (error) {
+            console.error('Error en getAll usuario:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID del Usuario a buscar
      * @returns {Promise<Usuario>}
      */
     getById: async (id) => {
-        const response = await instance.get(`/usuario/${id}`);
-        return response.data;
+        try {
+            const response = await instance.get(`/usuario/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en getById usuario:', error);
+            throw error;
+        }
     },
     /**
      * @param {Usuario} data - Datos del Usuario a crear
      * @returns {Promise<Usuario>} */
     createUsuario: async (data) => {
-        const response = await instance.post('/usuario', data);
-        return response.data;
+        try {
+            const response = await instance.post('/usuario', data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en createUsuario:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID del Usuario a actualizar
@@ -42,23 +57,38 @@ const usuario = {
      * @returns {Promise<Usuario>}
      */
     updateUsuarioById: async (id, data) => {
-        const response = await instance.put(`/usuario/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.put(`/usuario/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en updateUsuarioById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID del Usuario a actualizar
      * @param {Partial<Usuario>} data - Datos parciales del Usuario a actualizar
      * @returns {Promise<Usuario>} */
     patchUsuarioById: async (id, data) => {
-        const response = await instance.patch(`/usuario/${id}`, data);
-        return response.data;
+        try {
+            const response = await instance.patch(`/usuario/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Error en patchUsuarioById:', error);
+            throw error;
+        }
     },
     /**
      * @param {number} id - ID del Usuario a eliminar
      * @returns {Promise<void>} */
     deleteUsuarioById: async (id) => {
-        const response = await instance.delete(`/usuario/${id}`);
-        return response.data;
+        try {
+            const response = await instance.delete(`/usuario/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Error en deleteUsuarioById:', error);
+            throw error;
+        }
     },
 };
 
