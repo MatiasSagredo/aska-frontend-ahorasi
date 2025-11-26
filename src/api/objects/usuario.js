@@ -18,12 +18,11 @@ let instance = axios.create({
 const usuario = {
     /**
      * @param {string} email - Email del usuario
-     * @param {string} password - Contraseña del usuario
      * @returns {Promise<Usuario>}
      */
     login: async (email, password) => {
         try {
-            const response = await instance.post('/usuarios/login', { email, password });
+            const response = await instance.post('/usuarios/login', { emailUsuario: email, contrasenaUsuario: password });
             return response.data;
         } catch (error) {
             console.error('Error en login usuario:', error);
