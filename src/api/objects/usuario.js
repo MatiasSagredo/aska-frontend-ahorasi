@@ -16,10 +16,24 @@ let instance = axios.create({
 });
 
 const usuario = {
+    /**
+     * @param {string} email - Email del usuario
+     * @param {string} password - Contraseña del usuario
+     * @returns {Promise<Usuario>}
+     */
+    login: async (email, password) => {
+        try {
+            const response = await instance.post('/usuarios/login', { email, password });
+            return response.data;
+        } catch (error) {
+            console.error('Error en login usuario:', error);
+            throw error;
+        }
+    },
     /** @returns {Promise<Array<Usuario>>} */
     getAll: async () => {
         try {
-            const response = await instance.get('/usuario');
+            const response = await instance.get('/usuarios');
             return response.data;
         } catch (error) {
             console.error('Error en getAll usuario:', error);
@@ -32,7 +46,7 @@ const usuario = {
      */
     getById: async (id) => {
         try {
-            const response = await instance.get(`/usuario/${id}`);
+            const response = await instance.get(`/usuarios/${id}`);
             return response.data;
         } catch (error) {
             console.error('Error en getById usuario:', error);
@@ -44,7 +58,7 @@ const usuario = {
      * @returns {Promise<Usuario>} */
     createUsuario: async (data) => {
         try {
-            const response = await instance.post('/usuario', data);
+            const response = await instance.post('/usuarios', data);
             return response.data;
         } catch (error) {
             console.error('Error en createUsuario:', error);
@@ -58,7 +72,7 @@ const usuario = {
      */
     updateUsuarioById: async (id, data) => {
         try {
-            const response = await instance.put(`/usuario/${id}`, data);
+            const response = await instance.put(`/usuarios/${id}`, data);
             return response.data;
         } catch (error) {
             console.error('Error en updateUsuarioById:', error);
@@ -71,7 +85,7 @@ const usuario = {
      * @returns {Promise<Usuario>} */
     patchUsuarioById: async (id, data) => {
         try {
-            const response = await instance.patch(`/usuario/${id}`, data);
+            const response = await instance.patch(`/usuarios/${id}`, data);
             return response.data;
         } catch (error) {
             console.error('Error en patchUsuarioById:', error);
@@ -83,7 +97,7 @@ const usuario = {
      * @returns {Promise<void>} */
     deleteUsuarioById: async (id) => {
         try {
-            const response = await instance.delete(`/usuario/${id}`);
+            const response = await instance.delete(`/usuarios/${id}`);
             return response.data;
         } catch (error) {
             console.error('Error en deleteUsuarioById:', error);

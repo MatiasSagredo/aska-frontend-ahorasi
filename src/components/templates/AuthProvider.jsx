@@ -1,96 +1,55 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react';
+import usuarioApi from '../../api/objects/usuario';
 
-const SUPERUSER = {
-  id: 'superuser',
-  name: 'Maestro Aska',
-  email: 'admin@askagear.com',
-  password: 'SuperAska#2025',
-  role: 'superuser',
-  belt: 'negro',
-}
+const AuthContext = createContext();
 
-const AuthContext = createContext({
-  user: null,
-  users: [],
-  isSuperUser: false,
-  login: () => ({ success: false, message: 'Auth not initialised' }),
-  register: () => ({ success: false, message: 'Auth not initialised' }),
-  logout: () => { },
-})
+export const useAuth = () => useContext(AuthContext);
 
-function AuthProvider({ children }) {
-  const [users, setUsers] = useState([SUPERUSER])
-  const [user, setUser] = useState(null)
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const login = ({ email, password }) => {
-    const normalizedEmail = email.trim().toLowerCase()
-    const foundUser = users.find((item) => item.email === normalizedEmail)
-
-    if (!foundUser) {
-      return { success: false, message: 'El correo no está registrado.' }
+  useEffect(() => {
+    const storedUser = localStorage.getItem('usuario');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
+    setLoading(false);
+  }, []);
 
-    if (foundUser.password !== password) {
-      return { success: false, message: 'Contraseña incorrecta.' }
+  const login = async (email, password) => {
+    try {
+      const userData = await usuarioApi.login(email, password);
+
+      setUser(userData);
+      localStorage.setItem('usuario', JSON.stringify(userData));
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message || 'Error al iniciar sesión' };
     }
+  };
 
-    setUser(foundUser)
-    return { success: true, user: foundUser }
-  }
-
-  const register = ({ name, email, password, belt }) => {
-    const normalizedEmail = email.trim().toLowerCase()
-
-    if (users.some((item) => item.email === normalizedEmail)) {
-      return { success: false, message: 'Ya existe un usuario con este correo.' }
+  const register = async (data) => {
+    try {
+      await usuarioApi.createUsuario(data);
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message || 'Error al registrarse' };
     }
+  };
 
-    const newUser = {
-      id:
-        (typeof crypto !== 'undefined' && crypto.randomUUID
-          ? crypto.randomUUID()
-          : `user-${Date.now()}`),
-      name: name.trim() || 'Atleta Aska',
-      email: normalizedEmail,
-      password,
-      belt,
-      role: 'cliente',
-    }
-
-    setUsers((prev) => [...prev, newUser])
-    setUser(newUser)
-
-    return { success: true, user: newUser }
-  }
-
+  // 3. Función de Logout
   const logout = () => {
-    setUser(null)
-  }
+    setUser(null);
+    localStorage.removeItem('usuario');
+  };
 
-  const value = useMemo(
-    () => ({
-      user,
-      users,
-      isSuperUser: user?.role === 'superuser',
-      login,
-      register,
-      logout,
-      superuserEmail: SUPERUSER.email,
-    }),
-    [user, users, login, register],
-  )
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }
 
-function useAuth() {
-  const context = useContext(AuthContext)
-
-  if (!context) {
-    throw new Error('useAuth debe usarse dentro de AuthProvider')
-  }
-
-  return context
-}
-
-export { AuthProvider as default, useAuth }
+export default AuthProvider;
