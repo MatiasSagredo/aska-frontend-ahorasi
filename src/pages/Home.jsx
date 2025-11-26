@@ -1,4 +1,3 @@
-import NavItem from '../components/molecules/NavItem.jsx';
 import Hero from '../components/organisms/Hero.jsx';
 
 function Home() {
