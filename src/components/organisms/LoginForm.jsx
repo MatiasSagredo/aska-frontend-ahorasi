@@ -36,7 +36,7 @@ const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md gap-6 p-8 bg-secondary/95 backdrop-blur-md border border-primary/30 rounded-3xl shadow-2xl">
+        <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-md gap-6 p-4 bg-secondary/95 backdrop-blur-md border border-primary/30 rounded-3xl shadow-2xl">
             <Div className="text-center">
                 <Text variant="h2" className="text-3xl font-heading font-bold tracking-wider text-primary-foreground">
                     Bienvenido

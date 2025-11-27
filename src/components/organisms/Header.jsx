@@ -86,13 +86,13 @@ function Header() {
                     ))}
                 </Div>
 
-                <Div className="items-center gap-4 hidden md:flex">
+                <Div className="items-center gap-2 hidden md:flex">
                     {!user && (
                         <>
-                            <Link to="/login" className="mr-4 rounded-2xl bg-secondary/30 px-4 py-2 text-sm font-medium leading-tight text-primary-foreground transition-all hover:bg-secondary/50 hover:text-white focus:outline-none focus-visible:bg-secondary/60 md:mr-6">
+                            <Link to="/login" className="rounded-2xl bg-button px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:brightness-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
                                 Iniciar Sesion
                             </Link>
-                            <Link to="/register" className="rounded-2xl bg-secondary px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:bg-secondary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                            <Link to="/register" className="rounded-2xl bg-button-error px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:brightness-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
                                 Regístrate
                             </Link>
                         </>
@@ -144,22 +144,6 @@ function Header() {
                                         {link.label}
                                     </Link>
                                 ))}
-                                {!user && (
-                                    <Div>
-                                        <Link to="/login" onClick={handleMenuLinkClick} className="mr-4 rounded-2xl bg-secondary/30 px-4 py-2 text-sm font-medium leading-tight text-primary-foreground transition-all hover:bg-secondary/50 hover:text-white focus:outline-none focus-visible:bg-secondary/60 md:mr-6">
-                                            Iniciar Sesion
-                                        </Link>
-                                        <Link to="/register" onClick={handleMenuLinkClick} className="rounded-2xl bg-secondary px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:bg-secondary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
-                                            Regístrate
-                                        </Link>
-                                    </Div>
-                                )}
-                                {user && (
-                                    <Button onClick={() => {
-                                        logout();
-                                        handleMenuLinkClick();
-                                    }}>Cerrar Sesion</Button>
-                                )}
                             </Div>
                             {!user ? (
                                 <Div className="mt-6 flex flex-col gap-3">
