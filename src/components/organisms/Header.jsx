@@ -96,7 +96,7 @@ function Header() {
                         <Link key={link.href} to={link.href} className="flex items-center gap-2 transition-colors hover:text-white">
                             {link.label}
                             {link.href === '/carrito' && (
-                                <span className={`inline-flex min-w-[1.5rem] items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${cartBadgeClass}`}>
+                                <span className={`inline-flex min-w-6 items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${cartBadgeClass}`}>
                                     {totalItems}
                                 </span>
                             )}
@@ -166,7 +166,7 @@ function Header() {
                                     >
                                         {link.label}
                                         {link.href === '/carrito' && (
-                                            <span className={`ml-3 inline-flex min-w-[1.75rem] items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${cartBadgeClass}`}>
+                                            <span className={`ml-3 inline-flex min-w-7 items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${cartBadgeClass}`}>
                                                 {totalItems}
                                             </span>
                                         )}
@@ -175,10 +175,10 @@ function Header() {
                             </Div>
                             {!user ? (
                                 <Div className="mt-6 flex flex-col gap-3">
-                                    <Button type="button" onClick={() => goToAuth('login')} className="bg-button text-sm">
+                                    <Button type="button" onClick={() => {navigate('/login'); handleMenuLinkClick();}} className="bg-button text-sm">
                                         Iniciar sesión
                                     </Button>
-                                    <Button type="button" onClick={() => goToAuth('register')} className="bg-button-error text-sm">
+                                    <Button type="button" onClick={() => {navigate('/register'); handleMenuLinkClick();}} className="bg-button-error text-sm">
                                         Registrarme
                                     </Button>
                                 </Div>

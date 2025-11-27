@@ -3,14 +3,17 @@ import producto from '../api/objects/producto.js';
 import imagenes from "../api/objects/imagenes.js";
 import Div from "../components/atoms/Div.jsx";
 import ProductGrid from "../components/organisms/ProductGrid.jsx";
+import SearchBar from '../components/molecules/SearchBar.jsx';
 
 function Productos() {
     /** @type {[import("../api/objects/producto.js").Producto[]]} */
     const [products, setProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
     /** @type {[import("../api/objects/imagenes.js").Imagenes[]]} */
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
         let mounted = true;
@@ -18,7 +21,11 @@ function Productos() {
             try {
                 const data = await producto.getAll();
                 const imgdata = await imagenes.getAll();
-                if (mounted) setProducts(Array.isArray(data) ? data : []);
+                const list = Array.isArray(data) ? data : [];
+                if (mounted) {
+                    setProducts(list);
+                    setAllProducts(list);
+                }
                 if (mounted) setImages(Array.isArray(imgdata) ? imgdata : []);
                 console.log(data);
             } catch (err) {
@@ -35,6 +42,20 @@ function Productos() {
 
     return (
         <main className="min-h-screen p-6 bg-primary-50">
+            <SearchBar value={searchValue} onChange={(e) => {
+                const val = (e.target.value || '').trim();
+                setSearchValue(val);
+                if (!val) {
+                    setProducts(allProducts);
+                    return;
+                }
+                const lower = val.toLowerCase();
+                setProducts(
+                    allProducts.filter((prod) =>
+                        (prod.nombreProducto || '').toLowerCase().includes(lower)
+                    )
+                );
+            }} />
             <ProductGrid productos={products} imagenes={images} />
         </main>
     );
