@@ -149,7 +149,7 @@ function Auth() {
                 logout();
                 navigate('/auth?view=register');
               }}
-              className="bg-button-success"
+              className="bg-button-error"
             >
               Crear nueva cuenta
             </Button>
@@ -189,7 +189,7 @@ function Auth() {
               type="button"
               onClick={() => handleModeChange('register')}
               className={`flex-1 rounded-full bg-transparent text-primary-foreground/70 ${
-                mode === 'register' ? 'bg-button-success text-white shadow-lg' : ''
+                mode === 'register' ? 'bg-button-error text-white shadow-lg' : ''
               }`}
             >
               Crear cuenta
@@ -247,8 +247,10 @@ function Auth() {
             <Button
               type="submit"
               disabled={isSubmitDisabled}
-              className={`bg-button px-6 py-3 text-base font-semibold text-white ${
-                isSubmitDisabled ? 'cursor-not-allowed opacity-60' : 'hover:bg-button-success/80'
+              className={`${
+                mode === 'register' ? 'bg-button-error' : 'bg-button'
+              } px-6 py-3 text-base font-semibold text-white ${
+                isSubmitDisabled ? 'cursor-not-allowed opacity-60' : 'hover:brightness-110'
               }`}
             >
               {mode === 'login' ? 'Ingresar' : 'Registrarme'}

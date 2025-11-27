@@ -100,7 +100,7 @@ function Header() {
                             <Button type="button" onClick={() => goToAuth('login')} className="bg-button text-sm">
                                 Iniciar sesión
                             </Button>
-                            <Button type="button" onClick={() => goToAuth('register')} className="bg-button-success text-sm">
+                            <Button type="button" onClick={() => goToAuth('register')} className="bg-button-error text-sm">
                                 Registrarse
                             </Button>
                         </>
@@ -155,7 +155,7 @@ function Header() {
                                     <Button type="button" onClick={() => goToAuth('login')} className="bg-button text-sm">
                                         Iniciar sesión
                                     </Button>
-                                    <Button type="button" onClick={() => goToAuth('register')} className="bg-button-success text-sm">
+                                    <Button type="button" onClick={() => goToAuth('register')} className="bg-button-error text-sm">
                                         Registrarme
                                     </Button>
                                 </Div>
