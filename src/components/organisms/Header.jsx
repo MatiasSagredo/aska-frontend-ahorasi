@@ -1,14 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
 import Button from '../atoms/Button.jsx';
 import Icon from '../atoms/Icon.jsx';
 import { useAuth } from '../templates/AuthProvider.jsx';
+import { useCart } from '../templates/CartProvider.jsx';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { logout, user } = useAuth();
+    const { items } = useCart();
+    const totalItems = useMemo(
+        () => items.reduce((total, item) => total + (item.quantity ?? 0), 0),
+        [items]
+    );
+    const hasItems = totalItems > 0;
+    const cartBadgeClass = hasItems
+        ? 'bg-button text-white'
+        : 'bg-secondary/60 text-primary-foreground/70';
     const displayName = user?.nombreUsuario ?? user?.name ?? user?.emailUsuario ?? '';
     const links = [
         { href: '/', label: 'Inicio' },
@@ -76,12 +86,20 @@ function Header() {
                     <Text variant="span" className="hidden text-sm opacity-70 sm:block">
                         Equipamiento deportivo premium
                     </Text>
+                    <Text variant="span" className="text-xs font-medium text-primary-foreground/70">
+                        Compra al carrito
+                    </Text>
                 </Div>
 
                 <Div role="navigation" aria-label="Navegación principal" className="hidden items-center gap-6 text-sm font-medium md:flex">
                     {links.map((link) => (
-                        <Link key={link.href} to={link.href} className="transition-colors hover:text-white">
+                        <Link key={link.href} to={link.href} className="flex items-center gap-2 transition-colors hover:text-white">
                             {link.label}
+                            {link.href === '/carrito' && (
+                                <span className={`inline-flex min-w-[1.5rem] items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${cartBadgeClass}`}>
+                                    {totalItems}
+                                </span>
+                            )}
                         </Link>
                     ))}
                 </Div>
@@ -144,9 +162,14 @@ function Header() {
                                         key={link.href}
                                         to={link.href}
                                         onClick={handleMenuLinkClick}
-                                        className="rounded-2xl bg-secondary/30 px-4 py-3 font-medium leading-tight text-primary-foreground transition-all hover:bg-secondary/50 hover:text-white focus:outline-none focus-visible:bg-secondary/60"
+                                        className="flex items-center justify-between rounded-2xl bg-secondary/30 px-4 py-3 font-medium leading-tight text-primary-foreground transition-all hover:bg-secondary/50 hover:text-white focus:outline-none focus-visible:bg-secondary/60"
                                     >
                                         {link.label}
+                                        {link.href === '/carrito' && (
+                                            <span className={`ml-3 inline-flex min-w-[1.75rem] items-center justify-center rounded-full px-2 py-0.5 text-xs font-semibold ${cartBadgeClass}`}>
+                                                {totalItems}
+                                            </span>
+                                        )}
                                     </Link>
                                 ))}
                             </Div>
