@@ -1,21 +1,37 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
 import Button from '../atoms/Button.jsx';
 import Icon from '../atoms/Icon.jsx';
+import { useAuth } from '../templates/AuthProvider.jsx';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const links = [
+    const navigate = useNavigate();
+    const { user, logout } = useAuth();
+
+    const links = useMemo(() => ([
         { href: '/', label: 'Inicio' },
         { href: '/productos', label: 'Productos' },
         { href: '/contacto', label: 'Contacto' },
         { href: '/carrito', label: 'Carrito' },
-    ];
+    ]), []);
 
     const toggleMenu = () => setIsMenuOpen((prev) => !prev);
     const handleMenuLinkClick = () => setIsMenuOpen(false);
+
+    const handleLogout = () => {
+        logout();
+        setIsMenuOpen(false);
+        navigate('/');
+    };
+
+    const goToAuth = (view = 'login') => {
+        const suffix = view === 'register' ? '?view=register' : '';
+        setIsMenuOpen(false);
+        navigate(`/auth${suffix}`);
+    };
 
     useEffect(() => {
         const handleKeyUp = (event) => {
@@ -69,6 +85,28 @@ function Header() {
                     ))}
                 </Div>
 
+                <Div className="hidden items-center gap-3 md:flex">
+                    {user ? (
+                        <>
+                            <Div className="rounded-full border border-primary/40 bg-secondary/40 px-4 py-2 text-xs uppercase tracking-[0.3em] text-primary-foreground/70">
+                                Hola, {user.name.split(' ')[0]}
+                            </Div>
+                            <Button type="button" onClick={handleLogout} className="bg-button-warning text-sm">
+                                Cerrar sesión
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button type="button" onClick={() => goToAuth('login')} className="bg-button text-sm">
+                                Iniciar sesión
+                            </Button>
+                            <Button type="button" onClick={() => goToAuth('register')} className="bg-button-success text-sm">
+                                Registrarse
+                            </Button>
+                        </>
+                    )}
+                </Div>
+
                 <Div className="flex items-center gap-3 md:hidden">
                     <Button
                         onClick={toggleMenu}
@@ -112,6 +150,28 @@ function Header() {
                                     </Link>
                                 ))}
                             </Div>
+                            {!user ? (
+                                <Div className="mt-6 flex flex-col gap-3">
+                                    <Button type="button" onClick={() => goToAuth('login')} className="bg-button text-sm">
+                                        Iniciar sesión
+                                    </Button>
+                                    <Button type="button" onClick={() => goToAuth('register')} className="bg-button-success text-sm">
+                                        Registrarme
+                                    </Button>
+                                </Div>
+                            ) : (
+                                <Div className="mt-6 flex flex-col gap-3 rounded-2xl bg-secondary/40 p-4">
+                                    <Text className="text-xs uppercase tracking-[0.25em] text-primary-foreground/60">
+                                        Sesión activa
+                                    </Text>
+                                    <Text className="text-sm text-white">
+                                        {user.name}
+                                    </Text>
+                                    <Button type="button" onClick={handleLogout} className="bg-button-warning text-sm">
+                                        Cerrar sesión
+                                    </Button>
+                                </Div>
+                            )}
                         </Div>
                     </>
                 )}
