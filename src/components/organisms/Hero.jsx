@@ -26,13 +26,10 @@ function Hero() {
                         Descubre la colección de alto impacto de ASKA: materiales de vanguardia, ergonomía superior y diseños listos para cualquier desafío.
                     </Text>
                     <Div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                        <Button className="bg-button text-primary-foreground shadow-md hover:bg-button/90">
-                            Comprar ahora
-                        </Button>
                         <Link
                             href="/productos"
                             label="Ver catálogo"
-                            className="inline-flex items-center justify-center rounded-lg border border-primary/40 px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-1 hover:border-primary hover:bg-primary/20"
+                            className="inline-flex bg-button text-primary-foreground shadow-md hover:bg-button/90 p-2 rounded-lg border border-white/10"
                         >
                             Ver catálogo
                         </Link>

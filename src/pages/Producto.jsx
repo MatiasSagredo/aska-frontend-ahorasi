@@ -7,6 +7,7 @@ import Button from "../components/atoms/Button.jsx";
 import producto from "../api/objects/producto.js";
 import imagenes from "../api/objects/imagenes.js";
 import { useCart } from "../components/templates/CartProvider.jsx";
+import Separator from "../components/atoms/Separator.jsx";
 
 function Producto() {
     /** @type {[import("../api/objects/producto.js").Producto | null]} */
@@ -55,8 +56,8 @@ function Producto() {
         return () => { mounted = false; };
     }, [id]);
 
-    const imagenProducto = product
-        ? images.find((img) => img?.idProducto?.idProducto === product.idProducto) ?? null
+    const imagenesProducto = product
+        ? images.filter((img) => img?.idProducto?.idProducto === product.idProducto) ?? null
         : null;
 
     const formattedPrice = typeof product?.precio === "number"
@@ -85,7 +86,7 @@ function Producto() {
                 <Div className="grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
                     <Div className="flex items-center justify-center rounded-xl bg-primary-100 p-6">
                         <Image
-                            src={imagenProducto?.urlImagen ?? "https://via.placeholder.com/600?text=Sin+imagen"}
+                            src={imagenesProducto[0]?.urlImagen ?? "https://via.placeholder.com/600?text=Sin+imagen"}
                             alt={`Imagen del producto ${product.nombreProducto}`}
                             className="h-72 w-full max-w-md rounded-xl object-contain"
                         />
@@ -109,8 +110,10 @@ function Producto() {
                         </Button>
                     </Div>
                 </Div>
-                <Div className="flex flex-col gap-2 border-t border-white/5 bg-primary-100 p-4 md:flex-row md:items-center md:justify-between">
-                    <Text className="text-sm text-gray-300">
+                <Div className="flex flex-col gap-2 bg-primary-100 p-4 md:flex-row md:items-center md:justify-between">
+                    <Div className="flex flex-col">
+                    <Separator />
+                    <Text className="text-sm text-gray-300 mb-2">
                         ¿Buscabas otro producto? Vuelve a la lista para seguir explorando.
                     </Text>
                     <RouterLink
@@ -119,6 +122,7 @@ function Producto() {
                     >
                         Volver a productos
                     </RouterLink>
+                    </Div>
                 </Div>
             </Div>
         </Div>
