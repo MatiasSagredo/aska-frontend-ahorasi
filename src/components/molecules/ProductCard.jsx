@@ -12,7 +12,7 @@ function ProductCard({ name, description, precio, marca, image, onClickCompra, i
         <article className="bg-secondary rounded-md relative w-full border border-white/10">
             <Div className="flex flex-col justify-between h-full">
                 <Div className="flex flex-col p-4">
-                    <Text variant='h3' className="font-heading text-2xl font-bold">{name}</Text>
+                    <Text variant='h3' className="font-heading text-3xl font-bold">{name}</Text>
                     <Text className={"text-gray-300"}>{description}</Text>
                 </Div>
                 <Div className="flex flex-col">
@@ -23,7 +23,7 @@ function ProductCard({ name, description, precio, marca, image, onClickCompra, i
                         <Text className={"text-gray-400"}>{marca}</Text>
                     </Div>
                     <Div className="flex flex-col p-4">
-                        <Button onClick={onClickCompra} className={"bg-button-success mb-2 hover:shadow-2xl hover:shadow-black from-button-success to-button-success-to bg-linear-to-br hover:from-20%"}>Comprar</Button>
+                        <Button onClick={onClickCompra} className={"bg-button-success mb-2"}>Comprar</Button>
                         <Link to={`/productos/${id}`} className={"bg-button hover:shadow-2xl hover:shadow-black px-4 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105 active:scale-95 text-center"}>Ver Informacion</Link>
                     </Div>
                 </Div>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../templates/AuthProvider';
 import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
 import Button from '../atoms/Button.jsx';
 import Icon from '../atoms/Icon.jsx';
+import { useAuth } from '../templates/AuthProvider.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,10 +14,25 @@ function Header() {
         { href: '/', label: 'Inicio' },
         { href: '/productos', label: 'Productos' },
         { href: '/contacto', label: 'Contacto' },
+        { href: '/carrito', label: 'Carrito' },
     ];
+
+    const navigate = useNavigate();
 
     const toggleMenu = () => setIsMenuOpen((prev) => !prev);
     const handleMenuLinkClick = () => setIsMenuOpen(false);
+
+    const handleLogout = () => {
+        logout();
+        setIsMenuOpen(false);
+        navigate('/');
+    };
+
+    const goToAuth = (view = 'login') => {
+        const suffix = view === 'register' ? '?view=register' : '';
+        setIsMenuOpen(false);
+        navigate(`/auth${suffix}`);
+    };
 
     useEffect(() => {
         const handleKeyUp = (event) => {
@@ -145,6 +161,28 @@ function Header() {
                                     }}>Cerrar Sesion</Button>
                                 )}
                             </Div>
+                            {!user ? (
+                                <Div className="mt-6 flex flex-col gap-3">
+                                    <Button type="button" onClick={() => goToAuth('login')} className="bg-button text-sm">
+                                        Iniciar sesión
+                                    </Button>
+                                    <Button type="button" onClick={() => goToAuth('register')} className="bg-button-error text-sm">
+                                        Registrarme
+                                    </Button>
+                                </Div>
+                            ) : (
+                                <Div className="mt-6 flex flex-col gap-3 rounded-2xl bg-secondary/40 p-4">
+                                    <Text className="text-xs uppercase tracking-[0.25em] text-primary-foreground/60">
+                                        Sesión activa
+                                    </Text>
+                                    <Text className="text-sm text-white">
+                                        {user.name}
+                                    </Text>
+                                    <Button type="button" onClick={handleLogout} className="bg-button-warning text-sm">
+                                        Cerrar sesión
+                                    </Button>
+                                </Div>
+                            )}
                         </Div>
                     </>
                 )}

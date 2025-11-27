@@ -9,6 +9,7 @@ import Contacto from './pages/Contacto.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Div from './components/atoms/Div.jsx';
+import Carrito from './pages/Carrito.jsx';
 
 function App() {
     return (
@@ -21,9 +22,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/productos" element={<Productos />} />
                         <Route path="/contacto" element={<Contacto />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/productos/:id" element={<Producto />} />
+                        <Route path="/carrito" element={<Carrito />} />
                     </Routes>
                 </main>
                 <Footer />
