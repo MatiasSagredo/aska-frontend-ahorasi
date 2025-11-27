@@ -1,11 +1,11 @@
 import Hero from '../components/organisms/Hero.jsx';
 
 function Home() {
-  return (
-    <>
-      <Hero />
-    </>
-  );
+    return (
+        <>
+            <Hero />
+        </>
+    );
 }
 
 export default Home;

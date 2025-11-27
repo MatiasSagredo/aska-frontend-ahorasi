@@ -3,7 +3,7 @@ import Div from '../atoms/Div.jsx';
 import Icon from '../atoms/Icon.jsx';
 import { useState } from 'react';
 
-function SearchBar({placeholder, onChange = () => {}}) {
+function SearchBar({ placeholder, onChange = () => { } }) {
     let [val, setVal] = useState("");
     return (
         <Div>

@@ -15,7 +15,7 @@ const LoginForm = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        if(user) {
+        if (user) {
             navigate('/')
         }
     })

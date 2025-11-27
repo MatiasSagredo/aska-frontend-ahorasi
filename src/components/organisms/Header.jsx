@@ -139,10 +139,10 @@ function Header() {
                                     </Div>
                                 )}
                                 {user && (
-                                    <Button onClick={() => { 
-                                        logout(); 
+                                    <Button onClick={() => {
+                                        logout();
                                         handleMenuLinkClick();
-                                     }}>Cerrar Sesion</Button>
+                                    }}>Cerrar Sesion</Button>
                                 )}
                             </Div>
                         </Div>

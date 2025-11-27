@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(19.125% 0.00002 271.152);
-  --color-primary-foreground: #e6e6e6;
-  --color-secondary: oklch(22.213% 0.00003 271.152);
-  --color-button: oklch(31.317% 0.00004 271.152);
-  --color-button-success: #42a52a;
-  --color-button-error: #d42a2a;
-  --font-primary: 'Segoe UI', 'Montserrat', sans-serif;
-  --font-heading: 'Bebas Neue', 'Oswald', sans-serif;
+    --color-primary: oklch(19.125% 0.00002 271.152);
+    --color-primary-foreground: #e6e6e6;
+    --color-secondary: oklch(22.213% 0.00003 271.152);
+    --color-button: oklch(31.317% 0.00004 271.152);
+    --color-button-success: #398625;
+    --color-button-success-to: #65c84c;
+    --color-button-error: #d42a2a;
+    --font-primary: 'Segoe UI', 'Montserrat', sans-serif;
+    --font-heading: 'Bebas Neue', 'Oswald', sans-serif;
 }
 
 body {
-  @apply min-h-screen bg-primary text-primary-foreground font-primary;
+    @apply min-h-screen bg-primary text-primary-foreground font-primary;
 }

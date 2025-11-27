@@ -18,11 +18,11 @@ function ContactForm() {
             <form className="space-y-5">
                 <Div className="flex flex-col gap-2">
                     <Text variant="label" className="text-sm font-semibold text-primary-foreground">Nombre completo</Text>
-                    <Input type="text" placeholder="Ej. Daniela Torres" className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-primary-foreground" onChange={(e) => { setNombreCompleto(e.target.value);}} value={nombreCompleto} />
+                    <Input type="text" placeholder="Ej. Daniela Torres" className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-primary-foreground" onChange={(e) => { setNombreCompleto(e.target.value); }} value={nombreCompleto} />
                 </Div>
                 <Div className="flex flex-col gap-2">
                     <Text variant="label" className="text-sm font-semibold text-primary-foreground">Correo electrónico</Text>
-                    <Input type="email" placeholder="tu@email.com" className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-primary-foreground" onChange={(e) => { setEmail(e.target.value);  }} value={email} />
+                    <Input type="email" placeholder="tu@email.com" className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-primary-foreground" onChange={(e) => { setEmail(e.target.value); }} value={email} />
                 </Div>
                 <Div className="flex flex-col gap-2">
                     <Text variant="label" className="text-sm font-semibold text-primary-foreground">Mensaje</Text>
@@ -30,7 +30,7 @@ function ContactForm() {
                         rows="5"
                         className="resize-none rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
                         placeholder="Cuéntanos en qué podemos ayudarte"
-                        onChange={(e) => { setMensaje(e.target.value);}} value={mensaje}
+                        onChange={(e) => { setMensaje(e.target.value); }} value={mensaje}
                     />
                 </Div>
                 <Button className="w-full bg-button text-primary-foreground shadow-md hover:bg-button/90">
