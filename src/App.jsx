@@ -4,6 +4,7 @@ import ParticleBackground from './components/templates/ParticleBackground.jsx';
 import Header from './components/organisms/Header.jsx';
 import Footer from './components/organisms/Footer.jsx';
 import Productos from './pages/Productos.jsx';
+import Producto from './pages/Producto.jsx';
 import Contacto from './pages/Contacto.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
@@ -22,6 +23,7 @@ function App() {
                         <Route path="/contacto" element={<Contacto />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/productos/:id" element={<Producto />} />
                     </Routes>
                 </main>
                 <Footer />

@@ -3,9 +3,10 @@ import Text from '../atoms/Text.jsx';
 import Image from '../atoms/Image.jsx';
 import Button from '../atoms/Button.jsx';
 import Separator from '../atoms/Separator.jsx';
+import { Link } from 'react-router-dom';
 
 
-function ProductCard({ name, description, precio, marca, image, onClickCompra, onClickInfo }) {
+function ProductCard({ name, description, precio, marca, image, onClickCompra, id }) {
 
     return (
         <article className="bg-secondary rounded-md relative w-full border border-white/10">
@@ -23,7 +24,7 @@ function ProductCard({ name, description, precio, marca, image, onClickCompra, o
                     </Div>
                     <Div className="flex flex-col p-4">
                         <Button onClick={onClickCompra} className={"bg-button-success mb-2 hover:shadow-2xl hover:shadow-black from-button-success to-button-success-to bg-linear-to-br hover:from-20%"}>Comprar</Button>
-                        <Button onClick={onClickInfo} className={"bg-button hover:shadow-2xl hover:shadow-black"}>Ver Informacion</Button>
+                        <Link to={`/productos/${id}`} className={"bg-button hover:shadow-2xl hover:shadow-black px-4 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105 active:scale-95 text-center"}>Ver Informacion</Link>
                     </Div>
                 </Div>
             </Div>
