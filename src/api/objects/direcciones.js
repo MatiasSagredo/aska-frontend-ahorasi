@@ -1,13 +1,5 @@
 import axios from "axios";
 
-/** @typedef {Object} Direcciones
- * Objeto Direcciones
- * @property {number} idDirecciones - ID de las Direcciones
- * @property {string} nombreCalle - Nombre de la Calle
- * @property {import('./usuario.js').Usuario} idUsuario - Usuario asociado a las Direcciones
- * @property {import('./comuna.js').Comuna} idComuna - Comuna asociada a las Direcciones
- */
-
 let instance = axios.create({
     baseURL: 'https://aska-backend.onrender.com/api/v1',
     headers: {
@@ -16,7 +8,6 @@ let instance = axios.create({
 });
 
 const direcciones = {
-    /** @returns {Promise<Array<Direcciones>>} */
     getAll: async () => {
         try {
             const response = await instance.get('/direcciones');

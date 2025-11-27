@@ -17,7 +17,6 @@ export function CartProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (e) {
-      // ignore
     }
   }, [items]);
 

@@ -11,7 +11,6 @@ const Login = () => {
                 <ParticleBackground />
             </Div>
 
-            {/* IZQUIERDA: texto (oculto en pantallas pequeñas) */}
             <Div className="hidden md:flex md:flex-col md:justify-center md:gap-5 md:w-1/2 md:px-8">
                 <Text variant="span" className="text-xs uppercase tracking-[0.4em] text-primary-foreground/70">
                     Comunidad Aska
@@ -24,7 +23,6 @@ const Login = () => {
                 </Text>
             </Div>
 
-            {/* DERECHA: formulario. En small ocupa el ancho necesario, centrado */}
             <Div className="relative z-10 w-full md:w-1/2 md:flex md:items-center md:justify-center">
                 <LoginForm />
             </Div>

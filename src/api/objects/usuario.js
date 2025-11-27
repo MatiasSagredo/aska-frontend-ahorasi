@@ -1,13 +1,5 @@
 import axios from "axios";
 
-/** @typedef {Object} Usuario
- * Objeto Usuario
- * @property {number} idUsuario - ID del Usuario
- * @property {string} nombreUsuario - Nombre del Usuario
- * @property {string} emailUsuario - Email del Usuario
- * @property {import('./rol.js').Rol} idRol - Rol del Usuario
- */
-
 let instance = axios.create({
     baseURL: 'https://aska-backend.onrender.com/api/v1',
     headers: {
@@ -29,7 +21,6 @@ const usuario = {
             throw error;
         }
     },
-    /** @returns {Promise<Array<Usuario>>} */
     getAll: async () => {
         try {
             const response = await instance.get('/usuarios');

@@ -1,15 +1,5 @@
 import axios from "axios";
 
-/** @typedef {Object} Venta
- * Objeto Venta
- * @property {number} idVenta - ID de la Venta
- * @property {number?} total - Total de la Venta
- * @property {import('./estado.js').Estado} idEstado - Estado de la Venta
- * @property {import('./metodopago.js').MetodoPago} idMetodoPago - Metodo de Pago de la Venta
- * @property {import('./metodoenvio.js').MetodoEnvio} idMetodoEnvio - Metodo de Envio de la Venta
- * @property {import('./usuario.js').Usuario} idUsuario - Usuario asociado a la Venta
- */
-
 let instance = axios.create({
     baseURL: 'https://aska-backend.onrender.com/api/v1',
     headers: {
@@ -18,7 +8,6 @@ let instance = axios.create({
 });
 
 const venta = {
-    /** @returns {Promise<Array<Venta>>} */
     getAll: async () => {
         try {
             const response = await instance.get('/venta');

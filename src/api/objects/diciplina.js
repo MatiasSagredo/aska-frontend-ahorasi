@@ -1,11 +1,5 @@
 import axios from "axios";
 
-/** @typedef {Object} Diciplina
- * Objeto Diciplina
- * @property {number} idDiciplina - ID de la Diciplina
- * @property {string} nombreDiciplina - Nombre de la Diciplina
- */
-
 let instance = axios.create({
     baseURL: 'https://aska-backend.onrender.com/api/v1',
     headers: {
@@ -14,7 +8,6 @@ let instance = axios.create({
 });
 
 const diciplina = {
-    /** @returns {Promise<Array<Diciplina>>} */
     getAll: async () => {
         try {
             const response = await instance.get('/diciplina');

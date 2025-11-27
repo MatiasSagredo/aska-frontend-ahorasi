@@ -1,11 +1,5 @@
 import axios from "axios";
 
-/** @typedef {Object} Region
- * Objeto Region
- * @property {number} idRegion - ID de la Region
- * @property {string} nombreRegion - Nombre de la Region
- */
-
 let instance = axios.create({
     baseURL: 'https://aska-backend.onrender.com/api/v1',
     headers: {
@@ -14,7 +8,6 @@ let instance = axios.create({
 });
 
 const Region = {
-    /** @returns {Promise<Array<Region>>} */
     getAll: async () => {
         try {
             const response = await instance.get('/region');

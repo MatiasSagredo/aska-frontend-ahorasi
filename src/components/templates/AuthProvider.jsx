@@ -6,7 +6,6 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
-    /** @type {[import('../../api/objects/usuario.js').Usuario]} */
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 

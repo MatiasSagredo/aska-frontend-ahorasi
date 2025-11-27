@@ -1,11 +1,5 @@
 import axios from "axios";
 
-/** @typedef {Object} Rol
- * Objeto rol
- * @property {number} idRol - ID del rol
- * @property {string} nombreRol - Nombre del rol
- */
-
 let instance = axios.create({
     baseURL: 'https://aska-backend.onrender.com/api/v1',
     headers: {
@@ -14,7 +8,6 @@ let instance = axios.create({
 });
 
 const rol = {
-    /** @returns {Promise<Array<Rol>>} */
     getAll: async () => {
         try {
             const response = await instance.get('/rol');

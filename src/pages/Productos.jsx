@@ -6,10 +6,8 @@ import ProductGrid from "../components/organisms/ProductGrid.jsx";
 import SearchBar from '../components/molecules/SearchBar.jsx';
 
 function Productos() {
-    /** @type {[import("../api/objects/producto.js").Producto[]]} */
     const [products, setProducts] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
-    /** @type {[import("../api/objects/imagenes.js").Imagenes[]]} */
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

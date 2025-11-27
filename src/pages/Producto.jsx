@@ -10,9 +10,7 @@ import { useCart } from "../components/templates/CartProvider.jsx";
 import Separator from "../components/atoms/Separator.jsx";
 
 function Producto() {
-    /** @type {[import("../api/objects/producto.js").Producto | null]} */
     const [product, setProduct] = useState(null);
-    /** @type {[import("../api/objects/imagenes.js").Imagenes[]]} */
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
