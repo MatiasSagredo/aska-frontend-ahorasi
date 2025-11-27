@@ -26,7 +26,21 @@ export function AuthProvider({ children }) {
 
             return { success: true };
         } catch (error) {
-            return { success: false, message: error.message || 'Error al iniciar sesión' };
+            const resp = error?.response;
+            const status = resp?.status ?? error?.status;
+            // backend might return structured data with message
+            const backendMessage = resp?.data?.message ?? resp?.data ?? null;
+            let message;
+            if (status === 401) {
+                message = 'Credenciales incorrectas';
+            } else if (backendMessage && typeof backendMessage === 'string') {
+                message = backendMessage;
+            } else if (error?.message && error.message.includes('401')) {
+                message = 'Credenciales incorrectas';
+            } else {
+                message = error?.message || 'Error al iniciar sesión';
+            }
+            return { success: false, message };
         }
     };
 

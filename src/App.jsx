@@ -10,6 +10,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Div from './components/atoms/Div.jsx';
 import Carrito from './pages/Carrito.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/carrito" element={<Carrito />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
                 <Footer />

@@ -2,16 +2,38 @@ import Div from '../components/atoms/Div.jsx';
 import Text from '../components/atoms/Text.jsx';
 import Button from '../components/atoms/Button.jsx';
 import Image from '../components/atoms/Image.jsx';
+import { useState, useEffect } from 'react';
+import Alert from '../components/molecules/Alert.jsx';
 import { useCart } from '../components/templates/CartProvider.jsx';
 
 function Carrito() {
   const { items, updateQuantity, removeFromCart, clearCart, total } = useCart();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
+
+  // auto-hide alert after 4 seconds when shown
+  useEffect(() => {
+    if (!showAlert) return undefined;
+    const id = setTimeout(() => setShowAlert(false), 4000);
+    return () => clearTimeout(id);
+  }, [showAlert]);
 
   if (!items || items.length === 0) {
     return (
       <Div className="mx-auto max-w-4xl p-8">
         <Text variant="h2" className="text-2xl font-heading font-bold">Tu carrito está vacío</Text>
         <Text className="mt-2 text-sm text-primary-foreground/80">Agrega productos para comenzar tu compra.</Text>
+        {showAlert && (
+          <div className="mt-4">
+            <Alert
+              type="success"
+              title="Compra completa"
+              message={alertMsg}
+              dismissible
+              onClose={() => setShowAlert(false)}
+            />
+          </div>
+        )}
       </Div>
     );
   }
@@ -45,8 +67,24 @@ function Carrito() {
             <Text className="font-semibold">Total</Text>
             <Text className="font-heading text-xl font-bold">${total.toFixed(2)}</Text>
           </Div>
-          <Button className="w-full bg-button-success">Pagar</Button>
-          <Button onClick={clearCart} className="mt-3 w-full bg-secondary">Vaciar carrito</Button>
+          <Button className="w-full bg-button-success" onClick={() => {
+            // Simular pago: vaciar carrito y mostrar alerta
+            clearCart();
+            setAlertMsg('Compra realizada con éxito');
+            setShowAlert(true);
+          }}>Pagar</Button>
+          {showAlert && (
+            <div className="mt-4">
+              <Alert
+                type="success"
+                title="Compra completa"
+                message={alertMsg}
+                dismissible
+                onClose={() => setShowAlert(false)}
+              />
+            </div>
+          )}
+          <Button onClick={() => { clearCart(); }} className="mt-3 w-full bg-secondary">Vaciar carrito</Button>
         </Div>
       </Div>
     </Div>
