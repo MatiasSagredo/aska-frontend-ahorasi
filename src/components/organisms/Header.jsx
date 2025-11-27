@@ -9,6 +9,7 @@ import { useAuth } from '../templates/AuthProvider.jsx';
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { logout, user } = useAuth();
+    const displayName = user?.nombreUsuario ?? user?.name ?? user?.emailUsuario ?? '';
     const links = [
         { href: '/', label: 'Inicio' },
         { href: '/productos', label: 'Productos' },
@@ -97,7 +98,12 @@ function Header() {
                         </>
                     )}
                     {user && (
-                        <Button onClick={() => { logout() }}>Cerrar Sesion</Button>
+                        <>
+                            <Text className="text-sm text-primary-foreground/80">
+                                Hola{displayName ? `, ${displayName}` : ''}
+                            </Text>
+                            <Button onClick={() => { logout() }}>Cerrar Sesion</Button>
+                        </>
                     )}
                 </Div>
 
@@ -159,7 +165,7 @@ function Header() {
                                         Sesión activa
                                     </Text>
                                     <Text className="text-sm text-white">
-                                        {user.name}
+                                        Hola{displayName ? `, ${displayName}` : ''}
                                     </Text>
                                     <Button type="button" onClick={handleLogout} className="bg-button-warning text-sm">
                                         Cerrar sesión
