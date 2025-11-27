@@ -5,6 +5,7 @@ import Header from './components/organisms/Header.jsx';
 import Footer from './components/organisms/Footer.jsx';
 import Productos from './pages/Productos.jsx';
 import Contacto from './pages/Contacto.jsx';
+import Carrito from './pages/Carrito.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/productos" element={<Productos />} />
+              <Route path="/carrito" element={<Carrito />} />
             <Route path="/contacto" element={<Contacto />} />
           </Routes>
         </main>

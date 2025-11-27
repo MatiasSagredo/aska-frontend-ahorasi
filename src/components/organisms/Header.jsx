@@ -11,6 +11,7 @@ function Header() {
         { href: '/', label: 'Inicio' },
         { href: '/productos', label: 'Productos' },
         { href: '/contacto', label: 'Contacto' },
+        { href: '/carrito', label: 'Carrito' },
     ];
 
     const toggleMenu = () => setIsMenuOpen((prev) => !prev);
