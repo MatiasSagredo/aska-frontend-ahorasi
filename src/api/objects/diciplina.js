@@ -33,12 +33,12 @@ const diciplina = {
     /**
      * @param {Diciplina} data - Datos de la Diciplina a crear
      * @returns {Promise<Diciplina>} */
-    creatediciplina: async (data) => {
+    createDiciplina: async (data) => {
         try {
             const response = await instance.post('/diciplina', data);
             return response.data;
         } catch (error) {
-            console.error('Error en creatediciplina:', error);
+            console.error('Error en createDiciplina:', error);
             throw error;
         }
     },
@@ -47,12 +47,12 @@ const diciplina = {
      * @param {Diciplina} data - Datos de la Diciplina a actualizar
      * @returns {Promise<Diciplina>}
      */
-    updatediciplinaById: async (id, data) => {
+    updateDiciplinaById: async (id, data) => {
         try {
             const response = await instance.put(`/diciplina/${id}`, data);
             return response.data;
         } catch (error) {
-            console.error('Error en updatediciplinaById:', error);
+            console.error('Error en updateDiciplinaById:', error);
             throw error;
         }
     },
@@ -60,24 +60,24 @@ const diciplina = {
      * @param {number} id - ID de la diciplina a actualizar
      * @param {Partial<Diciplina>} data - Datos parciales de la diciplina a actualizar
      * @returns {Promise<Diciplina>} */
-    patchdiciplinaById: async (id, data) => {
+    patchDiciplinaById: async (id, data) => {
         try {
             const response = await instance.patch(`/diciplina/${id}`, data);
             return response.data;
         } catch (error) {
-            console.error('Error en patchdiciplinaById:', error);
+            console.error('Error en patchDiciplinaById:', error);
             throw error;
         }
     },
     /**
      * @param {number} id - ID de la diciplina a eliminar
      * @returns {Promise<void>} */
-    deletediciplinaById: async (id) => {
+    deleteDiciplinaById: async (id) => {
         try {
             const response = await instance.delete(`/diciplina/${id}`);
             return response.data;
         } catch (error) {
-            console.error('Error en deletediciplinaById:', error);
+            console.error('Error en deleteDiciplinaById:', error);
             throw error;
         }
     },

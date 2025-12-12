@@ -1,3 +1,4 @@
+import React from 'react';
 import Div from '../atoms/Div.jsx';
 import ContactCard from '../molecules/ContactCard.jsx';
 

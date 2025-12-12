@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Icon({ prefix = "fa-solid", name, className, labelled }) {
     return (
         <i

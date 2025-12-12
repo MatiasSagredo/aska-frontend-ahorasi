@@ -1,3 +1,4 @@
+import React from 'react';
 import ProductCard from "../molecules/ProductCard.jsx";
 import Text from "../atoms/Text.jsx";
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Div({ children, variant = "div", ...props }) {
     const Tag = variant;
     return (

@@ -1,7 +1,7 @@
+import React, { useState } from 'react';
 import Input from '../atoms/Input.jsx';
 import Div from '../atoms/Div.jsx';
 import Icon from '../atoms/Icon.jsx';
-import { useState } from 'react';
 
 function SearchBar({ placeholder, onChange = (e) => { } }) {
     let [val, setVal] = useState("");

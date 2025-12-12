@@ -1,8 +1,8 @@
+import React, { useState } from 'react';
 import Button from '../atoms/Button.jsx';
 import Input from '../atoms/Input.jsx';
 import Div from '../atoms/Div.jsx';
 import Text from '../atoms/Text.jsx';
-import { useState } from 'react';
 
 function ContactForm() {
 

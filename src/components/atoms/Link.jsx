@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Link({ href, label, children, ...props }) {
     return (
         <a className="" href={href} aria-label={label} {...props}>
