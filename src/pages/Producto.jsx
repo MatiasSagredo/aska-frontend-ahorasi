@@ -7,6 +7,7 @@ import Button from "../components/atoms/Button.jsx";
 import producto from "../api/objects/producto.js";
 import imagenes from "../api/objects/imagenes.js";
 import { useCart } from "../components/templates/CartProvider.jsx";
+import { useAuth } from "../components/templates/AuthProvider.jsx";
 import Separator from "../components/atoms/Separator.jsx";
 
 function Producto() {
@@ -15,6 +16,7 @@ function Producto() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { id } = useParams();
+    const { user } = useAuth();
 
     const { addToCart } = (() => {
         try {
@@ -69,7 +71,7 @@ function Producto() {
             id: cartId,
             name: product.nombreProducto,
             price: product.precio,
-            image: imagenProducto?.urlImagen,
+            image: imagenesProducto[0]?.urlImagen,
             marca: product.idMarca?.nombreMarca
         }, 1);
     };
@@ -109,8 +111,33 @@ function Producto() {
                     </Div>
                 </Div>
                 <Div className="flex flex-col gap-2 bg-primary-100 p-4 md:flex-row md:items-center md:justify-between">
-                    <Div className="flex flex-col">
+                    <Div className="flex flex-col gap-4 w-full">
                     <Separator />
+                    {user?.idRol?.idRol === 1 && (
+                        <Div className="flex flex-col gap-2 md:flex-row">
+                            <Button 
+                                onClick={() => window.location.href = `/admin/productos/editar/${product.idProducto}`}
+                                className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2.5"
+                            >
+                                Editar Producto
+                            </Button>
+                            <Button 
+                                onClick={async () => {
+                                    if (window.confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+                                        try {
+                                            await producto.deleteProductoById(product.idProducto);
+                                            window.location.href = '/productos';
+                                        } catch (err) {
+                                            alert('Error al eliminar el producto');
+                                        }
+                                    }
+                                }}
+                                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2.5"
+                            >
+                                Eliminar Producto
+                            </Button>
+                        </Div>
+                    )}
                     <Text className="text-sm text-gray-300 mb-2">
                         ¿Buscabas otro producto? Vuelve a la lista para seguir explorando.
                     </Text>

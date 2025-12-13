@@ -25,7 +25,6 @@ function Productos() {
                     setAllProducts(list);
                 }
                 if (mounted) setImages(Array.isArray(imgdata) ? imgdata : []);
-                console.log(data);
             } catch (err) {
                 if (mounted) setError(err);
             } finally {

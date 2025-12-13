@@ -10,7 +10,7 @@ let instance = axios.create({
 const Estado = {
     getAll: async () => {
         try {
-            const response = await instance.get('/estado');
+            const response = await instance.get('/estados');
             return response.data;
         } catch (error) {
             console.error('Error en getAll estado:', error);
@@ -23,7 +23,7 @@ const Estado = {
      */
     getById: async (id) => {
         try {
-            const response = await instance.get(`/estado/${id}`);
+            const response = await instance.get(`/estados/${id}`);
             return response.data;
         } catch (error) {
             console.error('Error en getById estado:', error);
@@ -35,7 +35,7 @@ const Estado = {
      * @returns {Promise<Estado>} */
     createEstado: async (data) => {
         try {
-            const response = await instance.post('/estado', data);
+            const response = await instance.post('/estados', data);
             return response.data;
         } catch (error) {
             console.error('Error en createEstado:', error);
@@ -49,7 +49,7 @@ const Estado = {
      */
     updateEstadoById: async (id, data) => {
         try {
-            const response = await instance.put(`/estado/${id}`, data);
+            const response = await instance.put(`/estados/${id}`, data);
             return response.data;
         } catch (error) {
             console.error('Error en updateEstadoById:', error);
@@ -62,7 +62,7 @@ const Estado = {
      * @returns {Promise<Estado>} */
     patchEstadoById: async (id, data) => {
         try {
-            const response = await instance.patch(`/estado/${id}`, data);
+            const response = await instance.patch(`/estados/${id}`, data);
             return response.data;
         } catch (error) {
             console.error('Error en patchEstadoById:', error);
@@ -74,7 +74,7 @@ const Estado = {
      * @returns {Promise<void>} */
     deleteEstadoById: async (id) => {
         try {
-            const response = await instance.delete(`/estado/${id}`);
+            const response = await instance.delete(`/estados/${id}`);
             return response.data;
         } catch (error) {
             console.error('Error en deleteEstadoById:', error);

@@ -117,9 +117,14 @@ function Header() {
                     )}
                     {user && (
                         <>
-                            <Text className="text-sm text-primary-foreground/80">
-                                Hola{displayName ? `, ${displayName}` : ''}
-                            </Text>
+                            {user?.idRol?.idRol === 1 && (
+                                <Link to="/admin" className="rounded-2xl bg-yellow-600 px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:brightness-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                                    Admin
+                                </Link>
+                            )}
+                            <Link to="/perfil" className="rounded-2xl bg-button px-4 py-2 text-sm font-medium leading-tight text-white transition-all hover:brightness-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                                Perfil
+                            </Link>
                             <Button onClick={() => { logout() }}>Cerrar Sesion</Button>
                         </>
                     )}
@@ -184,12 +189,14 @@ function Header() {
                                 </Div>
                             ) : (
                                 <Div className="mt-6 flex flex-col gap-3 rounded-2xl bg-secondary/40 p-4">
-                                    <Text className="text-xs uppercase tracking-[0.25em] text-primary-foreground/60">
-                                        Sesión activa
-                                    </Text>
-                                    <Text className="text-sm text-white">
-                                        Hola{displayName ? `, ${displayName}` : ''}
-                                    </Text>
+                                    {user?.idRol?.idRol === 1 && (
+                                        <Link to="/admin" onClick={handleMenuLinkClick} className="rounded-2xl bg-yellow-600 px-4 py-2 text-sm font-medium leading-tight text-white text-center transition-all hover:brightness-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                                            Admin
+                                        </Link>
+                                    )}
+                                    <Link to="/perfil" onClick={handleMenuLinkClick} className="rounded-2xl bg-button px-4 py-2 text-sm font-medium leading-tight text-white text-center transition-all hover:brightness-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary/10">
+                                        Perfil
+                                    </Link>
                                     <Button type="button" onClick={handleLogout} className="bg-button-warning text-sm">
                                         Cerrar sesión
                                     </Button>

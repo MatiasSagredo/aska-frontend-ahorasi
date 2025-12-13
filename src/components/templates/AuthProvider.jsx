@@ -28,7 +28,6 @@ export function AuthProvider({ children }) {
         } catch (error) {
             const resp = error?.response;
             const status = resp?.status ?? error?.status;
-            // backend might return structured data with message
             const backendMessage = resp?.data?.message ?? resp?.data ?? null;
             let message;
             if (status === 401) {
